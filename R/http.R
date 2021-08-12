@@ -227,7 +227,7 @@ TWIT_paginate_cursor <- function(token, api, params,
     }
 
     results[[i]] <- json
-    cursor <- json$next_cursor_str
+    cursor <- ifelse(!is.null(json$next_cursor_str), json$next_cursor_str, json$next_cursor)
     n_seen <- n_seen + length(get_id(json))
     i <- i + 1
 
